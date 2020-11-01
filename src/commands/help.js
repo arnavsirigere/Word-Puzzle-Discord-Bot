@@ -10,7 +10,7 @@ async function help(message) {
   embed.addField('`' + 'wp! channels add [CHANNEL ID]' + '`', 'To opt into a channel');
   embed.addField('`' + 'wp! channels del [CHANNEL ID]' + '`', 'To opt out of a channel');
   embed.addField('Levelling System', `Completing puzzles gives you some points. You level up when you get ${xpToNextLvl} points, and then your points go back to 0. Also, you get a higher prestige every ${lvlsToNextPrestige} levels!`);
-  message.channel.send(embed);
+  await message.channel.send(embed);
 }
 
 module.exports = help;
