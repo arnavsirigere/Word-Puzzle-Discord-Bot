@@ -1,4 +1,5 @@
-const { createCanvas, loadImage } = require('canvas');
+const path = require('path');
+const { createCanvas, registerFont, loadImage } = require('canvas');
 const { MessageAttachment } = require('discord.js');
 const database = require('kvaluedb');
 const { getFillStyle } = require('../utils/levelling');
@@ -7,6 +8,7 @@ const { xpToNextLvl } = require('../utils/levelling');
 async function embedPointCard(message) {
   const userData = database.get('userdata')[message.author.id];
   const user = message.guild.members.resolve(message.author.id);
+  registerFont(path.join(__dirname, '../../fonts/sans-serif.ttf'), { family: 'sans-serif' });
   const canvas = createCanvas(700, 250);
   const ctx = canvas.getContext('2d');
   ctx.fillStyle = '#1f2525a0';
