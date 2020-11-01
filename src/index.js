@@ -69,3 +69,7 @@ setInterval(() => {
     newPuzzle();
   }
 }, 60 * 60 * 1000);
+
+// Keeping the bot alive
+const keepAlive = require('../server');
+keepAlive();
