@@ -8,7 +8,7 @@ const { xpToNextLvl } = require('../utils/levelling');
 async function embedPointCard(message) {
   const userData = database.get('userdata')[message.author.id];
   const user = message.guild.members.resolve(message.author.id);
-  registerFont(path.join(__dirname, '../../fonts/sans-serif.ttf'), { family: 'sans-serif' });
+  registerFont(path.join(__dirname, '../../fonts/opensans.ttf'), { family: 'opensans' });
   const canvas = createCanvas(700, 250);
   const ctx = canvas.getContext('2d');
   ctx.fillStyle = '#1f2525a0';
@@ -21,9 +21,9 @@ async function embedPointCard(message) {
   const points = userData ? userData.points : 0;
   const prestige = userData ? userData.prestige : 'None';
   ctx.fillStyle = getFillStyle(prestige);
-  ctx.font = '32px sans-serif';
+  ctx.font = '32px opensans';
   ctx.fillText(`Prestige: ${prestige}`, canvas.width / 3 + 50, 70);
-  ctx.font = '28px sans-serif';
+  ctx.font = '28px opensans';
   ctx.fillText(`Level: ${level}`, canvas.width / 3 + 50, 110);
   ctx.fillText(`Points: ${points}`, canvas.width / 3 + 50, 150);
   // Full Bar
@@ -36,7 +36,7 @@ async function embedPointCard(message) {
   const w = map(points, 0, xpToNextLvl, 0, end);
   ctx.fillStyle = '#41EAD4';
   roundRect(ctx, start, y, w, 20, 25);
-  ctx.font = '24px sans-serif';
+  ctx.font = '24px opensans';
   ctx.fillStyle = getFillStyle(prestige);
   if (points > 0) {
     ctx.fillText(format(points), start + w - 26, y + 50);
