@@ -1,0 +1,24 @@
+{
+  "name": "discord-word-puzzle-bot",
+  "version": "1.0.0",
+  "description": "A Discord bot with several fun word puzzles",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Discord_Bot",
+    "Word_Puzzles"
+  ],
+  "author": "Arnav Sirigere",
+  "license": "MIT",
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "discord.js": "^12.4.0",
+    "dotenv": "^8.2.0",
+    "kvaluedb": "^1.0.1",
+    "pretty-ms": "^7.0.1",
+    "random-words": "^1.1.1",
+    "rita": "^1.3.94"
+  }
+}
