@@ -2,6 +2,10 @@
 
 A discord bot for random and fun word puzzles!
 
+## Adding the Bot to your own Server
+
+Add the bot to your own server [here](https://discord.com/api/oauth2/authorize?client_id=768401326333755404&permissions=76800&scope=bot)
+
 ## Commands
 
 `wp! points` - To view your overall stats and points
