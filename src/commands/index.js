@@ -52,7 +52,8 @@ async function commandHandler(message) {
   if (command == 'channels') {
     await manageChannels(message, args);
   } else if (command == 'points') {
-    await embedPointCard(message);
+    const user = args[0];
+    await embedPointCard(message, user);
   } else if (command == 'help') {
     await help(message);
   } else {

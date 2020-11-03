@@ -3,7 +3,7 @@ const { xpToNextLvl, lvlsToNextPrestige } = require('../utils/levelling');
 
 async function help(message) {
   const embed = new MessageEmbed().setColor('#6BF178').setTitle('Word Puzzle Bot Help');
-  embed.addField('`' + 'wp! points' + '`', 'To view your overall stats and points');
+  embed.addField('`' + 'wp! points [@user]' + '`', 'To view your own or someone elses overall stats and points');
   embed.addField('`' + 'wp! help' + '`', 'To view all the commands');
   embed.addField('`' + 'wp! channels' + '`', 'To view all the channels that are configured for the server');
   embed.addField('Only for users with the ' + '`' + 'MANAGE CHANNELS' + '`' + ' permission', 'Opt into channels with which you are okay with a puzzle randomly showing up in one of them!');

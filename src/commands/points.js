@@ -1,13 +1,22 @@
 const path = require('path');
 const { createCanvas, registerFont, loadImage } = require('canvas');
-const { MessageAttachment } = require('discord.js');
+const { MessageAttachment, MessageEmbed } = require('discord.js');
 const database = require('kvaluedb');
 const { getFillStyle } = require('../utils/levelling');
 const { xpToNextLvl } = require('../utils/levelling');
 
-async function embedPointCard(message) {
-  const userData = database.get('userdata')[message.author.id];
-  const user = message.guild.members.resolve(message.author.id);
+async function embedPointCard(message, pingedUser) {
+  let id;
+  if (pingedUser) {
+    if (!/<@\!\d+>/.test(pingedUser)) {
+      return message.channel.send(new MessageEmbed().setColor('#FF0000').setTitle('Invalid User!'));
+    } else {
+      [id] = pingedUser.match(/\d+/);
+    }
+  }
+  id = id || message.author.id;
+  const userData = database.get('userdata')[id];
+  const user = message.guild.members.resolve(id);
   registerFont(path.join(__dirname, '../../fonts/opensans.ttf'), { family: 'opensans' });
   const canvas = createCanvas(700, 250);
   const ctx = canvas.getContext('2d');

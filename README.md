@@ -8,7 +8,7 @@ Add the bot to your own server [here](https://discord.com/api/oauth2/authorize?c
 
 ## Commands
 
-`wp! points` - To view your overall stats and points
+`wp! points [@user]` - To view your own or someone elses overall stats and points
 
 `wp! help` - To view all the commands
 
