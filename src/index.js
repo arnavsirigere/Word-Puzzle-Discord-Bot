@@ -16,19 +16,17 @@ client.on('message', commandHandler);
 client.login(process.env.BOT_TOKEN);
 
 async function newPuzzle() {
-  if (database.get('puzzleSolved')) {
-    const allChannels = database.get('channels');
-    const guilds = Object.keys(allChannels);
-    const guildId = random(guilds);
-    const channelId = random(allChannels[guildId]);
-    const channel = client.guilds.resolve(guildId).channels.resolve(channelId);
-    const { puzzle, puzzleEmbed } = createPuzzle();
-    puzzle.guildId = guildId;
-    puzzle.channelId = channelId;
-    await channel.send(puzzleEmbed);
-    database.set('puzzle', puzzle);
-    database.set('puzzleSolved', false);
-  }
+  const allChannels = database.get('channels');
+  const guilds = Object.keys(allChannels);
+  const guildId = random(guilds);
+  const channelId = random(allChannels[guildId]);
+  const channel = client.guilds.resolve(guildId).channels.resolve(channelId);
+  const { puzzle, puzzleEmbed } = createPuzzle();
+  puzzle.guildId = guildId;
+  puzzle.channelId = channelId;
+  await channel.send(puzzleEmbed);
+  database.set('puzzle', puzzle);
+  database.set('puzzleSolved', false);
 }
 
 function createPuzzle() {
