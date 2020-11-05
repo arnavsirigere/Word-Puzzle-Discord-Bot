@@ -9,7 +9,6 @@ const puzzleTypes = require('./utils/puzzle');
 
 client.once('ready', async () => {
   console.log('Discord Bot is starting!');
-  await newPuzzle();
 });
 
 client.on('message', commandHandler);
