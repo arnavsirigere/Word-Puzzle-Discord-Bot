@@ -1,15 +1,16 @@
 const path = require('path');
 const { createCanvas, registerFont, loadImage } = require('canvas');
-const { MessageAttachment, MessageEmbed } = require('discord.js');
+const { MessageAttachment } = require('discord.js');
 const database = require('kvaluedb');
 const { getFillStyle } = require('../utils/levelling');
+const error = require('../utils/error');
 const { xpToNextLvl } = require('../utils/levelling');
 
 async function embedPointCard(message, pingedUser) {
   let id;
   if (pingedUser) {
     if (!/<@\!\d+>/.test(pingedUser)) {
-      return message.channel.send(new MessageEmbed().setColor('#FF0000').setTitle('Invalid User!'));
+      return error(message.channel, 'Invalid User!');
     } else {
       [id] = pingedUser.match(/\d+/);
     }

@@ -6,6 +6,7 @@ const { MessageEmbed } = require('discord.js');
 const help = require('./help');
 const { prestige } = require('../utils/levelling');
 const { xpToNextLvl } = require('../utils/levelling');
+const error = require('../utils/error');
 
 const prefix = 'wp!';
 
@@ -57,8 +58,7 @@ async function commandHandler(message) {
   } else if (command == 'help') {
     await help(message);
   } else {
-    const embed = new MessageEmbed().setColor('#FF0000').setTitle('Could not find that command!');
-    await message.channel.send(embed);
+    error(message.channel, 'Could not find that command!');
   }
 }
 

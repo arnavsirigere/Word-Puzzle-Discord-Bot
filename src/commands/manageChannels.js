@@ -1,8 +1,9 @@
 const database = require('kvaluedb');
 const { MessageEmbed } = require('discord.js');
+const error = require('../utils/error');
 
 async function manageChannels(message, args) {
-  const { guild } = message;
+  const { guild, channel } = message;
   const serverId = guild.id;
   const allChannels = database.get('channels');
   const channels = allChannels[serverId];
@@ -13,22 +14,17 @@ async function manageChannels(message, args) {
       .setDescription(channels && channels.length ? getChannelNames(guild, channels) : 'No channels configured');
     await message.channel.send(embed);
   } else {
-    const errorEmbed = new MessageEmbed().setColor('#FF0000');
     if (!guild.members.resolve(message.author.id).hasPermission('MANAGE_CHANNELS')) {
-      errorEmbed.setTitle('Only a user with the `MANAGE CHANNELS` permisison can use this command!');
-      return await message.channel.send(errorEmbed);
+      return error(channel, 'Only a user with the `MANAGE CHANNELS` permisison can use this command!');
     }
     if (!['add', 'del'].includes(args[0])) {
-      errorEmbed.setTitle('Could not find that command!');
-      return await message.channel.send(errorEmbed);
+      return error(channel, 'Could not find that command!');
     }
     const id = args[1];
     if (!id) {
-      errorEmbed.setTitle('You have to provide a channel id!');
-      return await message.channel.send(errorEmbed);
+      return error(channel, 'You have to provide a channel id!');
     } else if (invalidChannel(guild, id)) {
-      errorEmbed.setTitle('Could not find a text channel with the provided id!');
-      return await message.channel.send(errorEmbed);
+      return error(channel, 'Could not find a text channel with the provided id!');
     }
     const newChannels = channels || [];
     if (args[0] == 'add') {
