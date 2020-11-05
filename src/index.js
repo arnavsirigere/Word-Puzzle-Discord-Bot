@@ -61,11 +61,14 @@ function random(arr) {
   return arr[index];
 }
 
-setInterval(() => {
+checkForNewPuzzle();
+setInterval(checkForNewPuzzle, 60 * 60 * 1000);
+
+function checkForNewPuzzle() {
   if (database.get('puzzleSolved')) {
     newPuzzle();
   }
-}, 60 * 60 * 1000);
+}
 
 // Keeping the bot alive
 const keepAlive = require('../server');
