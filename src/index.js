@@ -9,6 +9,7 @@ const puzzleTypes = require('./utils/puzzle');
 
 client.once('ready', async () => {
   console.log('Discord Bot is starting!');
+  checkForNewPuzzle();
 });
 
 client.on('message', commandHandler);
@@ -61,7 +62,6 @@ function random(arr) {
   return arr[index];
 }
 
-checkForNewPuzzle();
 setInterval(checkForNewPuzzle, 60 * 60 * 1000);
 
 function checkForNewPuzzle() {
