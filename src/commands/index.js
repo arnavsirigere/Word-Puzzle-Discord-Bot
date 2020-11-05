@@ -16,6 +16,10 @@ async function commandHandler(message) {
   const puzzle = database.get('puzzle');
   with (puzzle) {
     if (message.channel.id == channelId && message.guild.id == guildId && answer.includes(message.content.toLowerCase())) {
+      if (database.get('puzzleSolved')) {
+        const embed = new MessageEmbed().setColor('#80ED99').setTitle('This puzzle has already been solved! Wait for a new one to appear!');
+        return message.channel.send(embed);
+      }
       // prettier-ignore
       const { createdAt, author, author: { id, username } } = message;
       const avatarUrl = author.avatarURL();
